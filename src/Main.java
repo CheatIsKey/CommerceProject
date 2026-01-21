@@ -16,8 +16,13 @@ public class Main {
         kitchen.addProduct(new Product("행주", 5000, "다회용으로 쓸 수 있는 아이템", 1000));
         kitchen.addProduct(new Product("믹서기", 100000, "브랜드 평판이 높은 아이템", 5));
 
+        Category foods = new Category("식품");
+        foods.addProduct(new Product("만두", 3500, "닭가슴살로 만들어 부담이 적은 만두", 1000));
+        foods.addProduct(new Product("컵라면", 1500, "한 끼로 든든하게 먹을 수 있는 라면", 10000));
+        foods.addProduct(new Product("제로 음료", 2500, "당과 칼로리가 제로여서 건강에 좋은 음료", 3500));
+        foods.addProduct(new Product("맥반석 구운 계란", 350, "건강과 다이어트를 동시에 챙기는 달걀", 50000));
 
-        CommerceSystem commerceSystem = new CommerceSystem(List.of(electronics, kitchen));
+        CommerceSystem commerceSystem = new CommerceSystem(List.of(electronics, kitchen, foods));
         commerceSystem.start();
     }
 }
