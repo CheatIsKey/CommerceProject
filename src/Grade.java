@@ -14,6 +14,4 @@ public enum Grade {
     public String getGrade() {
         return grade;
     }
-
-
 }
