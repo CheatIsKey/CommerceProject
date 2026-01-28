@@ -14,14 +14,26 @@ public class Cart {
      * @param requestQuantity : 사용자가 희망하는 물건 수량
      */
     public void addProduct(Product product, int requestQuantity) {
-        int quantity = product.getQuantity();
+        int stockQuantity = product.getQuantity();
 
-        if (quantity < requestQuantity) {
+        for (CartItem item : items) {
+            if (item.getProduct().getName().equals(product.getName())) {
+                int sumQuantity = item.getQuantity() + requestQuantity;
+
+                if (sumQuantity > stockQuantity) {
+                    throw new NoSuchQuantityException("상품의 총 재고량보다 많이 담을 수 없습니다.\n");
+                }
+
+                item.addQuantity(requestQuantity);
+                return;
+            }
+        }
+
+        if (requestQuantity > stockQuantity) {
             throw new NoSuchQuantityException("상품의 총 재고량보다 많이 담을 수 없습니다.\n");
         }
 
-        CartItem cartItem = new CartItem(product, requestQuantity);
-        items.add(cartItem);
+        items.add(new CartItem(product, requestQuantity));
     }
 
     public void removeProduct(int productId) {

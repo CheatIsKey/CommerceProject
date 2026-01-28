@@ -2,7 +2,7 @@
 public class CartItem {
     private final Product product;
 //    사용자가 원하는 물품 수량
-    private final int quantity;
+    private int quantity;
 
     public CartItem(Product product, int quantity) {
         this.product = product;
@@ -14,7 +14,7 @@ public class CartItem {
      * @return : 장바구니에 담겨져 있는 총 가격을 반환한다.
      */
     public long calculateTotalAmount() {
-        return (long) product.getPrice() * this.quantity;
+        return (long) product.getPrice() * quantity;
     }
 
     public Product getProduct() {
@@ -23,5 +23,13 @@ public class CartItem {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public String getCartItemInfo() {
+        return String.format("%-12s | %,12d원 | %20s | 수량: %,-9d개", product.getName(), product.getPrice(), product.getDescription(), quantity);
+    }
+
+    public void addQuantity(int amount) {
+        this.quantity += amount;
     }
 }

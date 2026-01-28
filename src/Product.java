@@ -1,3 +1,5 @@
+import exception.NoSuchQuantityException;
+
 public class Product {
     private String name;
     private int price;
@@ -51,5 +53,17 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 '}';
+    }
+
+    void addStock(int quantity) {
+        this.quantity += quantity;
+    }
+
+    void removeStock(int quantity) {
+        if (this.quantity < quantity) {
+            throw new NoSuchQuantityException("주문 수량이 재고 수량보다 더 많습니다.");
+        }
+
+        this.quantity -= quantity;
     }
 }
